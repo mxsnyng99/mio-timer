@@ -13,9 +13,9 @@
 <link rel="manifest" href="manifest.json">
 <title>집중 루틴</title>
 <style>
-:root{--bg:#0d1215;--card:#151c20;--card2:#1b242a;--line:#25313a;--ink:#eef4f3;--muted:#8fa1a6;--faint:#566469;--focus:#3fd6b4;--rest:#ffc56b;--long:#a99bff;--c:var(--focus);--sb:env(safe-area-inset-bottom);--st:env(safe-area-inset-top)}
+:root{--bg:#0d1215;--card:#151c20;--card2:#1b242a;--line:#25313a;--ink:#eef4f3;--muted:#8fa1a6;--faint:#566469;--focus:#3fd6b4;--rest:#ffc56b;--long:#a99bff;--on:#0d1215;--c:var(--focus);--sb:env(safe-area-inset-bottom);--st:env(safe-area-inset-top)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Pretendard',sans-serif;overscroll-behavior:none;-webkit-user-select:none;user-select:none;-webkit-font-smoothing:antialiased}
+html,body{margin:0;height:100%;background:var(--bg);transition:background-color .5s,color .5s;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Pretendard',sans-serif;overscroll-behavior:none;-webkit-user-select:none;user-select:none;-webkit-font-smoothing:antialiased}
 body{background-image:radial-gradient(color-mix(in srgb,var(--c) 20%,transparent) 1.2px,transparent 1.5px),radial-gradient(color-mix(in srgb,var(--c) 12%,transparent) 1.2px,transparent 1.5px);background-size:46px 46px;background-position:0 0,23px 23px;overflow:hidden}
 button{font:inherit;color:inherit}
 input{font:inherit;-webkit-user-select:text;user-select:text}
@@ -32,9 +32,9 @@ input{font:inherit;-webkit-user-select:text;user-select:text}
 .tab:active{transform:scale(.92)}.tab.drag{opacity:.4}
 /* header */
 .hd{display:flex;align-items:center;gap:10px}
-.hd h1{margin:0;font-size:22px;font-weight:850;letter-spacing:-.01em}
+.hd h1{margin:0;white-space:nowrap;font-size:22px;font-weight:850;letter-spacing:-.01em}
 .hd .sp{flex:1}
-.pill{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:800;padding:6px 11px;border-radius:999px;background:var(--card);border:1px solid var(--line)}
+.pill{white-space:nowrap;display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:800;padding:6px 11px;border-radius:999px;background:var(--card);border:1px solid var(--line)}
 .goal{display:flex;gap:5px;align-items:center}
 .goal span{width:11px;height:11px;border-radius:50%;border:1.5px solid var(--line);transition:all .3s}
 .goal span.on{background:var(--focus);border-color:var(--focus);animation:pop .5s cubic-bezier(.3,1.8,.5,1)}
@@ -43,7 +43,7 @@ input{font:inherit;-webkit-user-select:text;user-select:text}
 .chips::-webkit-scrollbar{display:none}
 .ch{flex:none;border:1px solid var(--line);background:var(--card);font-size:13px;font-weight:750;padding:7px 12px;border-radius:999px;cursor:pointer;transition:transform .15s,background .25s,color .25s,border-color .25s;white-space:nowrap}
 .ch:active{transform:scale(.92)}
-.ch.on{background:var(--ink);color:#0d1215;border-color:var(--ink)}
+.ch.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .ch.add{border-style:dashed;color:var(--muted)}
 /* task */
 .task{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:9px 12px;transition:border-color .25s}
@@ -68,12 +68,12 @@ input{font:inherit;-webkit-user-select:text;user-select:text}
 @keyframes bt{0%,100%{transform:scale(1)}50%{transform:scale(1.012)}}
 .flow{display:flex;gap:5px;flex-wrap:wrap;justify-content:center}
 .st{font-size:12px;font-weight:800;padding:5px 10px;border-radius:999px;border:1px solid var(--line);color:var(--muted);background:var(--card);transition:all .35s}
-.st.done{opacity:.35}.st.now{color:#0d1215;border-color:transparent;background:var(--sc);transform:scale(1.08)}
+.st.done{opacity:.35}.st.now{color:var(--on);border-color:transparent;background:var(--sc);transform:scale(1.08)}
 .ctl{display:flex;gap:16px;align-items:center}
 .b{border:1px solid var(--line);background:var(--card);border-radius:999px;cursor:pointer;transition:transform .15s,background .4s,border-color .4s,color .4s;display:grid;place-items:center}
 .b:active{transform:scale(.9)}
 .b.sm{width:54px;height:54px;font-size:19px}
-.b.go{width:86px;height:86px;font-size:30px;background:var(--c);border-color:var(--c);color:#0d1215}
+.b.go{width:86px;height:86px;font-size:30px;background:var(--c);border-color:var(--c);color:var(--on)}
 /* cards */
 .card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:14px}
 .card h3{margin:0 0 10px;font-size:13px;color:var(--muted);font-weight:800;letter-spacing:.02em;display:flex;align-items:center;gap:6px}
@@ -153,14 +153,14 @@ body.sh .toast{bottom:auto;top:calc(var(--st) + 16px);transform:translate(-50%,-
 .moods button small{font-size:10.5px;color:var(--muted);font-weight:700}
 .moods button.on{border-color:var(--focus);transform:scale(1.08)}
 .sheet .task{background:var(--card2);margin-bottom:12px}
-.sbtn{width:100%;border:0;border-radius:16px;padding:14px;font-weight:850;font-size:15px;background:var(--ink);color:#0d1215;cursor:pointer;transition:transform .15s}
+.sbtn{width:100%;border:0;border-radius:16px;padding:14px;font-weight:850;font-size:15px;background:var(--ink);color:var(--bg);cursor:pointer;transition:transform .15s}
 .sbtn:active{transform:scale(.97)}
 .tips{display:flex;flex-direction:column;gap:8px;width:min(84vw,360px)}
 .tips div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 12px;font-size:13.5px;font-weight:650;animation:slide .5s both}
 .flash{position:fixed;inset:0;background:var(--c);opacity:0;pointer-events:none;z-index:40}
 .flash.go{animation:fl 1.3s ease}
 @keyframes fl{0%{opacity:0}12%{opacity:.4}100%{opacity:0}}
-.toast{position:fixed;left:50%;bottom:calc(var(--sb) + 80px);transform:translate(-50%,24px);opacity:0;background:var(--ink);color:#0d1215;font-weight:850;font-size:14px;padding:11px 18px;border-radius:999px;transition:all .4s cubic-bezier(.3,1.5,.5,1);pointer-events:none;white-space:nowrap;z-index:50}
+.toast{position:fixed;left:50%;bottom:calc(var(--sb) + 80px);transform:translate(-50%,24px);opacity:0;background:var(--ink);color:var(--bg);font-weight:850;font-size:14px;padding:11px 18px;border-radius:999px;transition:all .4s cubic-bezier(.3,1.5,.5,1);pointer-events:none;white-space:nowrap;z-index:50}
 .toast.on{transform:translate(-50%,0);opacity:1}
 .ctx{position:fixed;z-index:60;background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:5px;min-width:160px;opacity:0;transform:scale(.92);transform-origin:top left;transition:opacity .15s,transform .2s cubic-bezier(.3,1.5,.5,1);pointer-events:none}
 .ctx.on{opacity:1;transform:none;pointer-events:auto}
@@ -174,6 +174,18 @@ body.sh .toast{bottom:auto;top:calc(var(--st) + 16px);transform:translate(-50%,-
 .conf span{position:absolute;top:-30px;font-size:22px;animation:fall 1.8s cubic-bezier(.2,.6,.4,1) forwards}
 @keyframes fall{to{transform:translateY(110vh) rotate(540deg);opacity:.2}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* 테마 */
+.thb{cursor:pointer;transition:transform .2s cubic-bezier(.3,1.8,.5,1)}.thb:active{transform:scale(.88) rotate(-12deg)}
+.thb i{font-style:normal;display:inline-flex;gap:2px}.thb i b{width:9px;height:9px;border-radius:50%;display:block}
+.ths{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:8px}
+.th{display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--card2);border-radius:14px;padding:9px 10px;font-size:13px;font-weight:800;color:var(--ink);cursor:pointer;text-align:left;transition:transform .15s,border-color .25s}
+.th:active{transform:scale(.95)}.th.on{border-color:var(--c)}
+.th .sw3{flex:none;width:34px;height:34px;border-radius:11px;position:relative;overflow:hidden;border:1px solid color-mix(in srgb,var(--ink) 10%,transparent)}
+.th .sw3 b{position:absolute;width:13px;height:13px;border-radius:50%}
+.th .sw3 b:nth-child(1){left:4px;top:4px}.th .sw3 b:nth-child(2){right:4px;top:11px}.th .sw3 b:nth-child(3){left:10px;bottom:3px}
+.th small{display:block;font-size:10.5px;font-weight:700;color:var(--faint)}
+body.thx .card,body.thx .pill,body.thx .ch,body.thx .tabs{transition:background-color .5s,border-color .5s,color .5s}
 </style>
 </head>
 <body>
@@ -181,7 +193,7 @@ body.sh .toast{bottom:auto;top:calc(var(--st) + 16px);transform:translate(-50%,-
 <main class="pages">
 <!-- 타이머 -->
 <section class="pg" id="pg-timer"><div class="wrap">
-  <div class="hd"><h1>집중 루틴</h1><span class="sp"></span><span class="pill" id="streak">🔥 0일</span><span class="pill goal" id="goal"></span></div>
+  <div class="hd"><h1>집중 루틴</h1><span class="sp"></span><span class="pill" id="streak">🔥 0일</span><span class="pill goal" id="goal"></span><button class="pill thb" id="thb" aria-label="색 테마 바꾸기"><i id="thd"></i></button></div>
   <div class="chips" id="presets"></div>
   <label class="task"><b>🎯 지금 할 일</b><input id="task" maxlength="40" enterkeyhint="done" autocomplete="off" aria-label="지금 집중할 일"></label>
   <div class="stage">
@@ -231,6 +243,7 @@ body.sh .toast{bottom:auto;top:calc(var(--st) + 16px);transform:translate(-50%,-
       <li><span>위에서 '📳 아이폰 알람으로 진동'을 켜면 끝. 화면이 꺼져 있어도 진짜 알람으로 울려요</span></li>
     </ol>
   </div>
+  <div class="card"><h3>🎨 색 테마 <span style="font-weight:600;color:var(--faint)">· 타이머 위 점 버튼을 눌러도 바뀌어요</span></h3><div class="ths" id="ths"></div></div>
   <div class="card"><h3>🗂 데이터</h3><div class="chips"><button class="ch" id="exp">📤 기록 내보내기</button><button class="ch" id="wipe">🧹 오늘 기록 비우기</button></div></div>
 </div></section>
 </main>
@@ -254,7 +267,30 @@ let T=LS.g('run',null); // {i,start,base,paused,left,wait}
 let H=LS.g('hist',[]);  // {id,d,t,min,task,mood,kind}
 const save=()=>{LS.s('cfg',C);};
 const PRESETS=[['mine','⭐ 내 루틴'],['p25','🍅 25·5 ×4',{f:25,r:5,l:20,n:4}],['p50','🔥 50·10 ×2',{f:50,r:10,l:30,n:2}],['p90','🧠 90 딥워크',{f:90,r:15,l:30,n:1}]];
-const COL={f:['#3fd6b4','#7ef0d6'],r:['#ffc56b','#ffe1a6'],l:['#a99bff','#d3c9ff']};
+let COL={f:['#3fd6b4','#7ef0d6'],r:['#ffc56b','#ffe1a6'],l:['#a99bff','#d3c9ff']};
+const THEMES=[
+ {id:'mint',n:'민트 나이트',e:'🌙',v:['#0d1215','#151c20','#1b242a','#25313a','#eef4f3','#8fa1a6','#566469','#3fd6b4','#ffc56b','#a99bff','#0d1215']},
+ {id:'berry',n:'블루베리',e:'🫐',v:['#0f1226','#171b36','#1e2342','#2a3057','#eef0ff','#9aa0c8','#5b628d','#7aa2ff','#ffd36b','#6be0c4','#0f1226']},
+ {id:'grape',n:'그레이프 소다',e:'🍇',v:['#170f22','#20172e','#281d38','#362a4a','#f4eeff','#a898c0','#66587d','#c38bff','#6be0c4','#ffcf6b','#170f22']},
+ {id:'mono',n:'모노 블랙',e:'🖤',v:['#0b0b0c','#161618','#1d1d20','#2a2a2e','#f5f5f5','#9a9aa0','#5c5c62','#f5f5f5','#ffcf5a','#9fd3ff','#0b0b0c']},
+ {id:'lav',n:'라벤더 밀크',e:'💜',v:['#f6f3ff','#ffffff','#efeaff','#e2dbf5','#2a2440','#7a7192','#b1a9c8','#8b7bff','#ff9f6b','#3fb8d9','#ffffff']},
+ {id:'sky',n:'스카이 블루',e:'☁️',v:['#eef6ff','#ffffff','#e1efff','#cfe2f7','#13263d','#5f7590','#9fb3c9','#3d8bff','#ffb23d','#7a6bff','#ffffff']},
+ {id:'lemon',n:'레몬 소다',e:'🍋',v:['#fffbea','#ffffff','#fff4c7','#f1e6b3','#2f2a12','#857a4a','#c2b785','#e8a800','#2fbfa0','#6c8cff','#2f2a12']},
+ {id:'peach',n:'피치 크림',e:'🍑',v:['#fff5ef','#ffffff','#ffe9dd','#f5dccd','#3a2418','#8f6b5a','#c9a998','#ff7a45','#2fb5a3','#8e7bff','#ffffff']},
+ {id:'matcha',n:'말차 라떼',e:'🍵',v:['#f3f6ec','#ffffff','#e8efda','#d9e3c6','#24301a','#6c7a5b','#a6b393','#5f9e45','#f0a23b','#5d8fd8','#ffffff']}];
+const TK=['bg','card','card2','line','ink','muted','faint','focus','rest','long','on'];
+function lite(h,t){const n=parseInt(h.slice(1),16),r=n>>16,g=n>>8&255,b=n&255,f=x=>Math.round(x+(255-x)*t).toString(16).padStart(2,'0');return '#'+f(r)+f(g)+f(b);}
+let THI=0;
+function applyTheme(id,anim){let i=THEMES.findIndex(t=>t.id===id);if(i<0)i=0;THI=i;const t=THEMES[i],R=document.documentElement.style;
+ TK.forEach((k,j)=>R.setProperty('--'+k,t.v[j]));
+ COL={f:[t.v[7],lite(t.v[7],.42)],r:[t.v[8],lite(t.v[8],.42)],l:[t.v[9],lite(t.v[9],.42)]};
+ const m=document.querySelector('meta[name=theme-color]');if(m)m.setAttribute('content',t.v[0]);
+ document.body.classList.add('thx');
+ const d=document.getElementById('thd');if(d)d.innerHTML=[7,8,9].map(j=>`<b style="background:${t.v[j]}"></b>`).join('');
+ const g=document.getElementById('ths');if(g)g.innerHTML=THEMES.map((x,j)=>`<button class="th ${j===i?'on':''}" data-th="${x.id}"><span class="sw3" style="background:${x.v[0]}">${[7,8,9].map(k=>`<b style="background:${x.v[k]}"></b>`).join('')}</span><span>${x.e} ${x.n}<small>${parseInt(x.v[0].slice(1,3),16)>128?'밝은 배경':'어두운 배경'}</small></span></button>`).join('');
+ try{localStorage.setItem('theme',JSON.stringify(t.id))}catch(e){}
+ if(anim&&typeof draw==='function')draw();}
+
 const LAB={f:'집중',r:'휴식',l:'긴 휴식'},EM={f:'🎯',r:'☕',l:'🛋'};
 function cfg(){const p=PRESETS.find(p=>p[0]===C.preset);return p&&p[2]?p[2]:C;}
 function plan(){const c=cfg(),P=[];for(let k=0;k<c.n;k++){P.push({k:'f',m:c.f});P.push(k<c.n-1?{k:'r',m:c.r}:{k:'l',m:c.l});}return P;}
@@ -397,6 +433,10 @@ let tt;function toast(m){const e=$('toast');e.textContent=m;e.classList.add('on'
 if(!(navigator.standalone||matchMedia('(display-mode: standalone)').matches)&&/iPhone|iPad/.test(navigator.userAgent))$('inst').hidden=false;
 document.addEventListener('visibilitychange',()=>{if(!document.hidden){if(T&&!T.paused&&!T.wait){const s=state();/* 화면 꺼진 동안 지나간 집중 단계 기록 */const P=s.P,from=lastI??T.i;for(let j=from;j<Math.min(s.i,P.length);j++){if(P[j].k==='f')logFocus(P[j].m);}if(s.i!==from)ding(P[Math.min(s.i,P.length-1)].k);lastI=s.end?null:s.i;}draw();wake(!!(T&&!T.paused));}});
 tabs();go('timer');setUI();ambUI();luck();head();draw();setInterval(draw,250);
+
+applyTheme((()=>{try{return JSON.parse(localStorage.getItem('theme'))}catch(e){return null}})()||'mint',true);
+document.getElementById('thb').onclick=()=>{const t=THEMES[(THI+1)%THEMES.length];applyTheme(t.id,true);toast(t.e+' '+t.n);};
+document.getElementById('ths').addEventListener('click',e=>{const b=e.target.closest('[data-th]');if(!b)return;const t=THEMES.find(x=>x.id===b.dataset.th);applyTheme(t.id,true);toast(t.e+' '+t.n);});
 </script>
 </body>
 </html>
